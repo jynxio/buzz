@@ -1,0 +1,81 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+html {
+    font-family: ui-monospace, monospace;
+    font-weight: normal;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.6;
+    tab-size: 4;
+
+    /* Prevent font size adjustment after orientation changes in iOS */
+    text-size-adjust: 100%;
+}
+
+/* Prevent 'sub' and 'sup' from affecting line height */
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* Fix table border color inheritance in Chrome and Safari */
+table {
+    border-color: currentcolor;
+}
+
+/* Fix clickable types styling in iOS and Safari */
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+    appearance: auto;
+}
+
+legend {
+    padding: 0;
+}
+
+progress {
+    vertical-align: baseline;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+    height: auto;
+}
+
+[type='search'] {
+    appearance: textfield;
+    outline-offset: -2px;
+}
+
+::-webkit-search-decoration {
+    appearance: none;
+}
+
+::-webkit-file-upload-button {
+    font: inherit;
+    appearance: auto;
+}
+
+summary {
+    display: list-item;
+}

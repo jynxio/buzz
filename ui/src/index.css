@@ -1,0 +1,16 @@
+@import url('./reset.css');
+
+:root {
+    --color-blue: #0157e4;
+    --color-white: #ededed;
+    --color-black: #000;
+    --color-silver: #333;
+    --color-gray: #131313;
+    --radius-xs: calc(2 / 16 * 1rem);
+    --radius-sm: calc(4 / 16 * 1rem);
+}
+
+body {
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}

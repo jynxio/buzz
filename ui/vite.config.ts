@@ -1,18 +1,11 @@
-import { crx } from '@crxjs/vite-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { defineConfig } from 'vite';
-import zip from 'vite-plugin-zip-pack';
-import manifest from './manifest.config';
-import { name, version } from './package.json';
-import { cssModules } from './plugins/vite-plugin-css-modules';
 
 export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
-            '$': path.resolve(__dirname, './'),
-            '@jynxio/ui': path.resolve(__dirname, 'ui/src'),
         },
     },
 
@@ -42,17 +35,11 @@ export default defineConfig({
                 ],
             },
         }),
-        crx({ manifest }),
-        zip({ outDir: 'release', outFileName: `crx-${name}-${version}.zip` }),
-        cssModules(),
     ],
 
     build: { minify: 'esbuild', cssMinify: 'lightningcss' },
-    server: { cors: { origin: [/chrome-extension:\/\//] } },
-    esbuild: { drop: process.env['NODE_ENV'] === 'production' ? ['console', 'debugger'] : [] },
 
     css: {
         transformer: 'postcss',
-        // lightningcss: { cssModules: true, targets: browserslistToTargets(browserslist()) },
     },
 });

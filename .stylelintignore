@@ -1,0 +1,11 @@
+# Development
+*/.git
+**/.vercel
+**/coverage
+**/node_modules
+**/pnpm-lock.yaml
+
+# Production
+**/out
+**/dist
+**/build
