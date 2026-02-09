@@ -5,14 +5,13 @@ import { defineConfig } from 'vite';
 import zip from 'vite-plugin-zip-pack';
 import manifest from './manifest.config';
 import { name, version } from './package.json';
-import { cssModules } from './plugins/vite-plugin-css-modules';
+import { viteShadowDom } from './plugins/vite-plugin-shadow-dom';
 
 export default defineConfig({
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
             '$': path.resolve(__dirname, './'),
-            '@jynxio/ui': path.resolve(__dirname, 'ui/src'),
+            '@': path.resolve(__dirname, 'src'),
         },
     },
 
@@ -42,9 +41,9 @@ export default defineConfig({
                 ],
             },
         }),
-        crx({ manifest }),
+        crx({ manifest, contentScripts: { injectCss: true } }),
         zip({ outDir: 'release', outFileName: `crx-${name}-${version}.zip` }),
-        cssModules(),
+        ...viteShadowDom(),
     ],
 
     build: { minify: 'esbuild', cssMinify: 'lightningcss' },

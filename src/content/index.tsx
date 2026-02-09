@@ -1,23 +1,29 @@
-import { ToastCtx } from '@/content/_toast';
+import css from './_index.css?inline';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { adoptStyleSheets, setRoot } from './_helpers';
-import css from './_index.module.css?inline&module';
-import { Translator } from './translator';
+import { subscribe } from 'virtual:shadow-dom-css';
+import { setShadowRoot } from './_helpers';
+import { Translator } from './_translator';
 
-const shadowRoot = document.body
-    .appendChild(document.createElement('jynxio-buzz'))
-    .attachShadow({ mode: 'closed' });
+const sheet = new CSSStyleSheet();
+const host = document.body.appendChild(document.createElement('jynxio-buzz'));
+const shadowRoot = host.attachShadow({ mode: 'closed' });
 const reactRoot = shadowRoot.appendChild(document.createElement('div'));
 
-setRoot({ reactRoot, shadowRoot });
-adoptStyleSheets(css.inline);
-reactRoot.classList.add(css.module['container'] ?? '');
+reactRoot.id = 'root';
+host.style.isolation = 'isolate';
+
+sheet.replace(css);
+setShadowRoot(shadowRoot);
+shadowRoot.adoptedStyleSheets = [sheet];
 
 createRoot(reactRoot).render(
     <StrictMode>
-        <ToastCtx>
-            <Translator />
-        </ToastCtx>
+        <Translator />
     </StrictMode>,
 );
+
+subscribe((cssSet) => {
+    console.log(cssSet);
+});

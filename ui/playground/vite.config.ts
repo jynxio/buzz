@@ -1,14 +1,15 @@
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { defineConfig } from 'vite';
+import { viteShadowDom } from '../../plugins/vite-plugin-shadow-dom';
 
 export default defineConfig({
     resolve: {
         alias: {
+            '$': path.resolve(__dirname, './'),
             '@': path.resolve(__dirname, 'src'),
         },
     },
-
     plugins: [
         react({
             include: /\.(js|jsx|ts|tsx)$/,
@@ -35,11 +36,8 @@ export default defineConfig({
                 ],
             },
         }),
+        ...viteShadowDom(),
     ],
-
     build: { minify: 'esbuild', cssMinify: 'lightningcss' },
-
-    css: {
-        transformer: 'postcss',
-    },
+    css: { transformer: 'postcss' },
 });

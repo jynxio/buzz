@@ -1,18 +1,19 @@
 *,
-*::before,
-*::after {
+*::after,
+*::before {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font: inherit;
+    color: inherit;
 }
 
-html {
+:root {
     font-family: ui-monospace, monospace;
     font-weight: normal;
     font-size: 1rem;
     font-style: normal;
-    line-height: 1.6;
+    line-height: 1;
     tab-size: 4;
 
     /* Prevent font size adjustment after orientation changes in iOS */
@@ -57,6 +58,10 @@ progress {
     vertical-align: baseline;
 }
 
+summary {
+    display: list-item;
+}
+
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
     height: auto;
@@ -74,8 +79,4 @@ progress {
 ::-webkit-file-upload-button {
     font: inherit;
     appearance: auto;
-}
-
-summary {
-    display: list-item;
 }

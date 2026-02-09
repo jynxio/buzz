@@ -14,7 +14,6 @@
         "allowImportingTsExtensions": true,
 
         "strict": true,
-        "noImplicitAny": true,
         "noUnusedLocals": true,
         "strictNullChecks": true,
         "noImplicitReturns": true,
@@ -23,7 +22,6 @@
         "verbatimModuleSyntax": true,
         "noUncheckedIndexedAccess": true,
         "noFallthroughCasesInSwitch": true,
-        "useUnknownInCatchVariables": true,
         "noUncheckedSideEffectImports": true,
         "noPropertyAccessFromIndexSignature": true,
 

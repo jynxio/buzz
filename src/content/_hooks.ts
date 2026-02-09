@@ -1,11 +1,11 @@
 import * as translateApi from '@/_services';
-import { ToastCtx } from '@/content/_toast';
+import { Toast } from '@jynxio/ui';
 import { useEffect } from 'react';
 
 type StatefulData = ['pending', { i: string }] | ['resolved', { i: string; o: string }];
 
 function useTranslate() {
-    const { add, close, update } = ToastCtx.useToastManager();
+    const { add, close, update } = Toast.useToastManager();
 
     return translate;
     function translate(i: string) {
