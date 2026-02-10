@@ -1,6 +1,9 @@
+import css from './_translator.module.css?shadow';
+
 import { Button, Toast } from '@jynxio/ui';
 import { getShadowRoot } from './_helpers';
-import { useTranslate, useTrigger } from './_hooks';
+import { useTrigger } from './_hooks/use-trigger';
+import { Translation } from './_translation';
 
 function Translator() {
     return (
@@ -11,17 +14,19 @@ function Translator() {
 }
 
 function Content() {
-    const { toasts, close } = Toast.useToastManager();
+    const { add, close, toasts } = Toast.useToastManager();
 
-    useTrigger(useTranslate());
+    useTrigger(createToast);
 
     return (
         <Toast.Portal container={getShadowRoot().getElementById('root')}>
             <Toast.Viewport>
                 {toasts.map((item) => {
                     return (
-                        <Toast.Root key={item.id} toast={item}>
-                            <Toast.Content>{JSON.stringify(item.data)}</Toast.Content>
+                        <Toast.Root key={item.id} toast={item} className={css['toast']}>
+                            <Toast.Content>
+                                <Translation input={item.data.input} />
+                            </Toast.Content>
 
                             <Button onClick={() => close(item.id)}>Close</Button>
                         </Toast.Root>
@@ -30,6 +35,10 @@ function Content() {
             </Toast.Viewport>
         </Toast.Portal>
     );
+
+    function createToast(input: string) {
+        add<{ input: string }>({ id: crypto.randomUUID(), data: { input } });
+    }
 }
 
 export { Translator };
