@@ -1,4 +1,4 @@
-import css from './_translator.module.css?shadow';
+import css from './_translator.module.css?spy';
 
 import { Button, Toast } from '@jynxio/ui';
 import { getShadowRoot } from './_helpers';

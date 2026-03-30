@@ -1,5 +1,4 @@
 /// <reference types="vite/client" />
-import './plugins/vite-plugin-shadow-dom.d';
 
 interface ImportMetaEnv {
     readonly VITE_API_KEY_VERCEL_AI_GATEWAY: string;

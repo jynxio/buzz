@@ -5,7 +5,6 @@ import { defineConfig } from 'vite';
 import zip from 'vite-plugin-zip-pack';
 import manifest from './manifest.config';
 import { name, version } from './package.json';
-import { viteShadowDom } from './plugins/vite-plugin-shadow-dom';
 
 export default defineConfig({
     resolve: {
@@ -43,7 +42,6 @@ export default defineConfig({
         }),
         crx({ manifest, contentScripts: { injectCss: true } }),
         zip({ outDir: 'release', outFileName: `crx-${name}-${version}.zip` }),
-        ...viteShadowDom(),
     ],
 
     build: { minify: 'esbuild', cssMinify: 'lightningcss' },

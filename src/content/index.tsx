@@ -1,8 +1,8 @@
-import './_index.css?shadow';
+import './_index.css?spy';
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { subscribe } from 'virtual:shadow-dom-css';
+import { on } from 'virtual:spy';
 import { setShadowRoot } from './_helpers';
 import { Translator } from './_translator';
 
@@ -14,7 +14,7 @@ const reactRoot = shadowRoot.appendChild(document.createElement('div'));
 reactRoot.id = 'root';
 host.style.isolation = 'isolate';
 
-subscribe(onCssUpdated);
+on(onCssUpdated);
 setShadowRoot(shadowRoot);
 
 createRoot(reactRoot).render(
