@@ -1,0 +1,40 @@
+{
+    "name": "app",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "main": "./out/main/index.js",
+    "scripts": {
+        "dev": "electron-vite dev",
+        "build": "vp run typecheck && electron-vite build",
+        "start": "electron-vite preview",
+        "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+        "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+        "typecheck": "vp run typecheck:node && vp run typecheck:web",
+        "postinstall": "electron-builder install-app-deps",
+        "build:unpack": "vp run build && electron-builder --dir",
+        "build:win": "vp run build && electron-builder --win",
+        "build:mac": "vp run build && electron-builder --mac",
+        "build:linux": "vp run build && electron-builder --linux"
+    },
+    "dependencies": {
+        "@electron-toolkit/preload": "catalog:",
+        "@electron-toolkit/utils": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@electron-toolkit/tsconfig": "catalog:",
+        "@total-typescript/ts-reset": "catalog:",
+        "@types/node": "catalog:",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
+        "@vitejs/plugin-react": "catalog:",
+        "electron": "catalog:",
+        "electron-builder": "catalog:",
+        "electron-vite": "catalog:",
+        "typescript": "catalog:",
+        "vite": "catalog:",
+        "vite-plus": "catalog:"
+    }
+}
