@@ -1,10 +1,10 @@
-// @todo
 /* oxlint-disable */
 
-import { app, BrowserWindow, ipcMain, shell } from "electron";
+import "./env";
+import { app, BrowserWindow, shell } from "electron";
 import { join } from "node:path";
 import { electronApp, is, optimizer } from "@electron-toolkit/utils";
-import icon from "../../resources/icon.png?asset";
+import { registerIpcHandlers } from "./ipc";
 
 function createWindow(): void {
     const mainWindow = new BrowserWindow({
@@ -12,9 +12,8 @@ function createWindow(): void {
         height: 670,
         show: false,
         autoHideMenuBar: true,
-        ...(process.platform === "linux" ? { icon } : {}),
         webPreferences: {
-            preload: join(__dirname, "../preload/index.js"),
+            preload: join(__dirname, "../preload/index.mjs"),
             sandbox: false,
         },
     });
@@ -42,8 +41,7 @@ app.whenReady().then(() => {
         optimizer.watchWindowShortcuts(window);
     });
 
-    ipcMain.on("ping", () => console.log("pong"));
-
+    registerIpcHandlers();
     createWindow();
 
     app.on("activate", () => {
