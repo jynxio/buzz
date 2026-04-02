@@ -18,10 +18,13 @@
         "build:linux": "vp run build && electron-builder --linux"
     },
     "dependencies": {
+        "@ai-sdk/gateway": "catalog:",
         "@electron-toolkit/preload": "catalog:",
         "@electron-toolkit/utils": "catalog:",
+        "ai": "catalog:",
         "react": "catalog:",
-        "react-dom": "catalog:"
+        "react-dom": "catalog:",
+        "zod": "catalog:"
     },
     "devDependencies": {
         "@electron-toolkit/tsconfig": "catalog:",

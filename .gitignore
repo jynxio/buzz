@@ -26,6 +26,7 @@ dist-ssr
 # Dev
 tsconfig.tsbuildinfo
 vite.config.d.ts
+.env
 
 # AI agent worktrees
 .claude/worktrees/
